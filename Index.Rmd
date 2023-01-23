@@ -6,7 +6,8 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+
 ```
 ### Set up Shrub Counts
 ```{r}
@@ -102,6 +103,32 @@ final$shrub_density <- final$n_shrubs/final$area_m2
 
 #write.csv(final, "regions_shrub_density.csv")
 
-### Suggest comparing 
+```
+
+### Plots
+```{r}
+###Shrub Density Plot
+
+library(ggplot2)
+p1 <- ggplot(data = final, mapping = aes(x = reorder(site_code, shrub_density), shrub_density)) + 
+  geom_bar(stat = "identity") + coord_flip() + xlab("Site Code") + ylab("Shrub Density") + theme_classic()
+p1
+```
+```{r}
+### Aridity Plot
+p2 <- ggplot(data = subset(final, !is.na(aridity)),  mapping = aes(x = reorder(site_code, aridity), aridity)) + 
+  geom_bar(stat = "identity") + coord_flip() + xlab("Site Code") + ylab("Aridity") + theme_classic()### Removed all sites that has no aridity recorded
+p2
+```
+```{r}
+p3 <- ggplot(data = final, mapping = aes(x = reorder(site_code, shrub_density), shrub_density, fill = aridity)) + 
+  geom_bar(stat = "identity") + coord_flip() + xlab("Site Code") + ylab("Shrub Density") + theme_classic()
+p3
+```
+### Write reccomended Sites as .csv
+```{r}
+
+reccomend <- final[c(36, 24, 19, 11, 37, 32),]
+#write.csv(reccomend, "recommended_sites.csv")
 ```
 
