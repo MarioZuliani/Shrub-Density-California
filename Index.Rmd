@@ -1,0 +1,107 @@
+---
+title: "Index"
+author: "Mario Zuliani"
+date: '2023-01-23'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+### Set up Shrub Counts
+```{r}
+### Ephedra Mojave Sites
+library(dplyr)
+library(tidyverse)
+Barstow_1 <- read.csv("Mojave Ephedra/Barstow_1.csv")
+Barstow_2 <- read.csv("Mojave Ephedra/Barstow_2.csv")
+Heartofmojave <- read.csv("Mojave Ephedra/Heartofmojave.csv")
+Sheephole <- read.csv("Mojave Ephedra/Sheephole.csv")
+Tecopa_Open <- read.csv("Mojave Ephedra/Tecopa_Open.csv")
+Tecopa <- read.csv("Mojave Ephedra/Tecopa.csv")
+
+mojave_sites <- merge(Barstow_1, Barstow_2, all=TRUE) %>%
+  merge(Heartofmojave, all = TRUE) %>%
+  merge(Sheephole, all = TRUE) %>%
+  merge(Tecopa_Open, all = TRUE) %>%
+  merge(Tecopa, all = TRUE)
+
+mojave_sites <- mojave_sites %>%
+  group_by(site_code) %>%
+  tally()
+
+names(mojave_sites)[2] <- "n_shrubs"
+```
+
+```{r}
+### San Joaquin Sites
+Antelope_valley <- read.csv("San Joaquin/Antelope_valley.csv")
+Avenal <- read.csv("San Joaquin/Avenal.csv")
+Carrizo <- read.csv("San Joaquin/Carrizo.csv")
+Coalinga <- read.csv("San Joaquin/Coalinga.csv")
+Cuyama <- read.csv("San Joaquin/Cuyama.csv")
+Lokern <- read.csv("San Joaquin/Lokern.csv")
+Panoche <- read.csv("San Joaquin/Panoche.csv")
+Panoche_silvercreek <- read.csv("San Joaquin/Panoche_silvercreek.csv")
+Semitropic <- read.csv("San Joaquin/Semitropic.csv")
+Tejon_ERG <- read.csv("San Joaquin/Tejon_ERG.csv")
+
+San_joaquin <- merge(Antelope_valley, Avenal, all = TRUE) %>%
+  merge(Carrizo, all = TRUE) %>%
+  merge(Coalinga, all = TRUE) %>%
+  merge(Cuyama, all = TRUE) %>%
+  merge(Lokern, all = TRUE) %>%
+  merge(Panoche, all = TRUE) %>%
+  merge(Panoche_silvercreek, all = TRUE) %>%
+  merge(Semitropic, all = TRUE) %>%
+  merge(Tejon_ERG, all = TRUE)
+
+San_joaquin <- San_joaquin %>%
+  group_by(site_code) %>%
+  tally()
+
+names(San_joaquin)[2] <- "n_shrubs"
+```
+
+```{r}
+### Mojave Larrea sites
+Cal_nev_ari <- read.csv("Mojave Larrea/Cal_nev_ari.csv")
+Las_vegas <- read.csv("Mojave Larrea/Las_vegas.csv")
+Mesquite <- read.csv("Mojave Larrea/Mesquite.csv")
+Mojave <- read.csv("Mojave Larrea/Mojave.csv")
+
+Mojave_Larrea <- merge(Cal_nev_ari, Las_vegas, all = TRUE) %>%
+  merge(Mesquite, all = TRUE) %>%
+  merge(Mojave, all = TRUE)
+
+Mojave_Larrea <- Mojave_Larrea %>%
+  group_by(site_code) %>%
+  tally()
+
+names(Mojave_Larrea)[2] <- "n_shrubs"
+```
+
+```{r}
+### Combine all shrub counts together
+
+Shrub_count <- merge(mojave_sites, San_joaquin, all = TRUE) %>%
+  merge(Mojave_Larrea, all = TRUE)
+```
+
+```{r}
+### Join shrub counts with regional df and calculate density m^2
+
+region <- read.csv("regional_sites_2022.csv")
+
+final <- merge(region, Shrub_count, all = TRUE)
+
+library(tidyr)
+final <- final %>% drop_na(n_shrubs)
+
+final$shrub_density <- final$n_shrubs/final$area_m2
+
+#write.csv(final, "regions_shrub_density.csv")
+
+### Suggest comparing 
+```
+
