@@ -1,7 +1,7 @@
-"","site_code","state","desert","region","foundation","lat","long","elevation","MAT","MAP","aridity","aspect","area_m2","area_calc","polygon_block","area_block_m2","n_shrubs","shrub_density"
-"36","Tecopa","California","Mojave","Mojave","Ephedra californica",35.85151504,-116.186706,699.456665,20.1,77,0.36492891,"",33401.1,"polygon","Tecopa",213979.67,3861,0.115594995374404
-"24","Mesquite","Nevada","Mojave","Mojave","Larrea tridentata",36.76,-114.07,NA,18.35,141,4.98,"",2157,"polygon","none",NA,241,0.111729253592953
-"19","Cuyama_5","California","San Joaquin","Cuyama","Ephedra californica",35.04595203,-119.889098,557,14.1,529,3.503311258,"south-facing slope",22095.06,"polygon","Cuyama",55203874.45,388,0.0175604863711617
-"11","Carrizo_7","California","San Joaquin","Carrizo","Ephedra californica",35.2473536,-119.808462,NA,NA,NA,NA,"",81719.76,"polygon","Carrizo",200418076.9,1144,0.0139990621607308
-"37","Tecopa_open","California","Mojave","Mojave","none",35.85474,-116.17866,NA,NA,NA,NA,"",5684.19,"polygon","Tecopa",213979.67,31,0.00545372339770486
-"32","Panoche_3","California","San Joaquin","Panoche","Ephedra californica",36.70554,-120.81229,596,14.4,377,2.618055556,"north",252374.92,"polygon","Panoche",1722195.13,667,0.00264289335881711
+"","site_code","lat","long","shrub_density","aridity","foundation"
+"37","Tecopa_open",35.85474,-116.17866,0.00545372339770486,NA,"none"
+"19","Cuyama_5",35.04595203,-119.889098,0.0175604863711617,3.503311258,"Ephedra californica"
+"11","Carrizo_7",35.2473536,-119.808462,0.0139990621607308,NA,"Ephedra californica"
+"32","Panoche_3",36.70554,-120.81229,0.00264289335881711,2.618055556,"Ephedra californica"
+"28","Mojave_4",35.15516667,-115.7903333,0.0540649000701997,0.71657754,"Larrea tridentata"
+"35","Sheephole",34.205676,-115.719676,0.0155657699562327,0.497716895,"Ephedra californica"

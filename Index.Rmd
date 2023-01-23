@@ -120,15 +120,11 @@ p2 <- ggplot(data = subset(final, !is.na(aridity)),  mapping = aes(x = reorder(s
   geom_bar(stat = "identity") + coord_flip() + xlab("Site Code") + ylab("Aridity") + theme_classic()### Removed all sites that has no aridity recorded
 p2
 ```
-```{r}
-p3 <- ggplot(data = final, mapping = aes(x = reorder(site_code, shrub_density), shrub_density, fill = aridity)) + 
-  geom_bar(stat = "identity") + coord_flip() + xlab("Site Code") + ylab("Shrub Density") + theme_classic()
-p3
-```
 ### Write reccomended Sites as .csv
 ```{r}
 
-reccomend <- final[c(36, 24, 19, 11, 37, 32),]
-#write.csv(reccomend, "recommended_sites.csv")
+recommend <- final[c(37, 19, 11, 32, 28, 35),c(1, 6, 7, 18, 11, 5)]
+#write.csv(recommend, "recommended_sites.csv")
+knitr::kable(recommend)
 ```
 
